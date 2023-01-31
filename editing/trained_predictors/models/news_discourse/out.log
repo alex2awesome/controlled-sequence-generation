@@ -1,0 +1,174 @@
+2021-10-04 00:22:59,613 - INFO - allennlp.common.params - random_seed = 13370
+2021-10-04 00:22:59,614 - INFO - allennlp.common.params - numpy_seed = 1337
+2021-10-04 00:22:59,614 - INFO - allennlp.common.params - pytorch_seed = 133
+2021-10-04 00:22:59,617 - INFO - allennlp.common.checks - Pytorch version: 1.9.1
+2021-10-04 00:22:59,617 - INFO - allennlp.common.params - type = default
+2021-10-04 00:22:59,618 - INFO - allennlp.common.params - dataset_reader.type = news_discourse
+2021-10-04 00:22:59,618 - INFO - allennlp.common.params - dataset_reader.type = news_discourse
+2021-10-04 00:22:59,618 - INFO - allennlp.common.params - dataset_reader.max_instances = None
+2021-10-04 00:22:59,618 - INFO - allennlp.common.params - dataset_reader.manual_distributed_sharding = False
+2021-10-04 00:22:59,618 - INFO - allennlp.common.params - dataset_reader.manual_multiprocess_sharding = False
+2021-10-04 00:22:59,619 - INFO - allennlp.common.params - dataset_reader.token_indexers.type = ref
+2021-10-04 00:22:59,620 - INFO - allennlp.common.params - dataset_reader.token_indexers.tokens.type = pretrained_transformer
+2021-10-04 00:22:59,620 - INFO - allennlp.common.params - dataset_reader.token_indexers.tokens.type = pretrained_transformer
+2021-10-04 00:22:59,620 - INFO - allennlp.common.params - dataset_reader.token_indexers.tokens.token_min_padding_length = 0
+2021-10-04 00:22:59,620 - INFO - allennlp.common.params - dataset_reader.token_indexers.tokens.model_name = roberta-large
+2021-10-04 00:22:59,621 - INFO - allennlp.common.params - type = roberta-large
+2021-10-04 00:22:59,621 - INFO - allennlp.common.params - dataset_reader.token_indexers.tokens.namespace = tags
+2021-10-04 00:22:59,621 - INFO - allennlp.common.params - dataset_reader.token_indexers.tokens.max_length = 512
+2021-10-04 00:22:59,621 - INFO - allennlp.common.params - dataset_reader.token_indexers.tokens.tokenizer_kwargs = None
+2021-10-04 00:23:06,850 - INFO - allennlp.common.params - dataset_reader.tokenizer.type = pretrained_transformer
+2021-10-04 00:23:06,851 - INFO - allennlp.common.params - dataset_reader.tokenizer.type = pretrained_transformer
+2021-10-04 00:23:06,851 - INFO - allennlp.common.params - dataset_reader.tokenizer.model_name = roberta-large
+2021-10-04 00:23:06,851 - INFO - allennlp.common.params - type = roberta-large
+2021-10-04 00:23:06,851 - INFO - allennlp.common.params - dataset_reader.tokenizer.add_special_tokens = True
+2021-10-04 00:23:06,851 - INFO - allennlp.common.params - dataset_reader.tokenizer.max_length = 512
+2021-10-04 00:23:06,851 - INFO - allennlp.common.params - dataset_reader.tokenizer.tokenizer_kwargs = None
+2021-10-04 00:23:06,852 - INFO - allennlp.common.params - train_data_path = train
+2021-10-04 00:23:06,852 - INFO - allennlp.common.params - type = train
+2021-10-04 00:23:06,852 - INFO - allennlp.common.params - model.type = basic_classifier
+2021-10-04 00:23:06,853 - INFO - allennlp.common.params - data_loader.type = ref
+2021-10-04 00:23:06,854 - INFO - allennlp.common.params - trainer.type = ref
+2021-10-04 00:23:06,855 - INFO - allennlp.common.params - vocabulary = <allennlp.common.lazy.Lazy object at 0x7fb02ce42b50>
+2021-10-04 00:23:06,855 - INFO - allennlp.common.params - datasets_for_vocab_creation = None
+2021-10-04 00:23:06,856 - INFO - allennlp.common.params - validation_dataset_reader = None
+2021-10-04 00:23:06,856 - INFO - allennlp.common.params - validation_data_path = None
+2021-10-04 00:23:06,856 - INFO - allennlp.common.params - validation_data_loader = None
+2021-10-04 00:23:06,856 - INFO - allennlp.common.params - test_data_path = test
+2021-10-04 00:23:06,856 - INFO - allennlp.common.params - type = test
+2021-10-04 00:23:06,856 - INFO - allennlp.common.params - evaluate_on_test = True
+2021-10-04 00:23:06,856 - INFO - allennlp.common.params - batch_weight_key = 
+2021-10-04 00:23:06,856 - INFO - allennlp.common.params - data_loader.type = multiprocess
+2021-10-04 00:23:06,857 - INFO - allennlp.common.params - data_loader.batch_size = None
+2021-10-04 00:23:06,857 - INFO - allennlp.common.params - data_loader.drop_last = False
+2021-10-04 00:23:06,857 - INFO - allennlp.common.params - data_loader.shuffle = False
+2021-10-04 00:23:06,857 - INFO - allennlp.common.params - data_loader.batch_sampler.type = bucket
+2021-10-04 00:23:06,857 - INFO - allennlp.common.params - data_loader.batch_sampler.type = bucket
+2021-10-04 00:23:06,857 - INFO - allennlp.common.params - data_loader.batch_sampler.batch_size = 8
+2021-10-04 00:23:06,858 - INFO - allennlp.common.params - data_loader.batch_sampler.sorting_keys = ['tokens']
+2021-10-04 00:23:06,858 - INFO - allennlp.common.params - type = tokens
+2021-10-04 00:23:06,858 - INFO - allennlp.common.params - data_loader.batch_sampler.padding_noise = 0.1
+2021-10-04 00:23:06,858 - INFO - allennlp.common.params - data_loader.batch_sampler.drop_last = False
+2021-10-04 00:23:06,858 - INFO - allennlp.common.params - data_loader.batch_sampler.shuffle = True
+2021-10-04 00:23:06,858 - INFO - allennlp.common.params - data_loader.batches_per_epoch = None
+2021-10-04 00:23:06,858 - INFO - allennlp.common.params - data_loader.num_workers = 0
+2021-10-04 00:23:06,858 - INFO - allennlp.common.params - data_loader.max_instances_in_memory = None
+2021-10-04 00:23:06,858 - INFO - allennlp.common.params - data_loader.start_method = fork
+2021-10-04 00:23:06,859 - INFO - allennlp.common.params - data_loader.cuda_device = None
+2021-10-04 00:23:06,859 - INFO - allennlp.common.params - data_loader.quiet = False
+2021-10-04 00:23:06,859 - INFO - allennlp.common.params - data_loader.collate_fn = <allennlp.data.data_loaders.data_collator.DefaultDataCollator object at 0x7fb02b861b90>
+2021-10-04 00:23:06,859 - INFO - tqdm - loading instances: 0it [00:00, ?it/s]
+2021-10-04 00:23:06,878 - INFO - botocore.credentials - Found credentials in environment variables.
+2021-10-04 00:23:19,241 - INFO - tqdm - loading instances: 0it [00:12, ?it/s]
+2021-10-04 00:23:19,241 - CRITICAL - root - Uncaught exception
+Traceback (most recent call last):
+  File "/Users/alex/opt/anaconda3/lib/python3.7/site-packages/aiohttp/connector.py", line 999, in _create_direct_connection
+    hosts = await asyncio.shield(host_resolved)
+  File "/Users/alex/opt/anaconda3/lib/python3.7/site-packages/aiohttp/connector.py", line 865, in _resolve_host
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+  File "/Users/alex/opt/anaconda3/lib/python3.7/site-packages/aiohttp/resolver.py", line 36, in resolve
+    flags=socket.AI_ADDRCONFIG,
+  File "/Users/alex/opt/anaconda3/lib/python3.7/asyncio/base_events.py", line 788, in getaddrinfo
+    None, getaddr_func, host, port, family, type, proto, flags)
+  File "/Users/alex/opt/anaconda3/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/Users/alex/opt/anaconda3/lib/python3.7/socket.py", line 752, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/alex/opt/anaconda3/bin/allennlp", line 8, in <module>
+    sys.exit(run())
+  File "/Users/alex/opt/anaconda3/lib/python3.7/site-packages/allennlp/__main__.py", line 46, in run
+    main(prog="allennlp")
+  File "/Users/alex/opt/anaconda3/lib/python3.7/site-packages/allennlp/commands/__init__.py", line 122, in main
+    args.func(args)
+  File "/Users/alex/opt/anaconda3/lib/python3.7/site-packages/allennlp/commands/train.py", line 121, in train_model_from_args
+    file_friendly_logging=args.file_friendly_logging,
+  File "/Users/alex/opt/anaconda3/lib/python3.7/site-packages/allennlp/commands/train.py", line 187, in train_model_from_file
+    return_model=return_model,
+  File "/Users/alex/opt/anaconda3/lib/python3.7/site-packages/allennlp/commands/train.py", line 260, in train_model
+    file_friendly_logging=file_friendly_logging,
+  File "/Users/alex/opt/anaconda3/lib/python3.7/site-packages/allennlp/commands/train.py", line 494, in _train_worker
+    ddp_accelerator=ddp_accelerator,
+  File "/Users/alex/opt/anaconda3/lib/python3.7/site-packages/allennlp/common/from_params.py", line 656, in from_params
+    **extras,
+  File "/Users/alex/opt/anaconda3/lib/python3.7/site-packages/allennlp/common/from_params.py", line 686, in from_params
+    return constructor_to_call(**kwargs)  # type: ignore
+  File "/Users/alex/opt/anaconda3/lib/python3.7/site-packages/allennlp/commands/train.py", line 712, in from_partial_objects
+    "train": data_loader.construct(reader=dataset_reader, data_path=train_data_path)
+  File "/Users/alex/opt/anaconda3/lib/python3.7/site-packages/allennlp/common/lazy.py", line 82, in construct
+    return self.constructor(**contructor_kwargs)
+  File "/Users/alex/opt/anaconda3/lib/python3.7/site-packages/allennlp/common/lazy.py", line 68, in constructor_to_use
+    **kwargs,
+  File "/Users/alex/opt/anaconda3/lib/python3.7/site-packages/allennlp/common/from_params.py", line 656, in from_params
+    **extras,
+  File "/Users/alex/opt/anaconda3/lib/python3.7/site-packages/allennlp/common/from_params.py", line 686, in from_params
+    return constructor_to_call(**kwargs)  # type: ignore
+  File "/Users/alex/opt/anaconda3/lib/python3.7/site-packages/allennlp/data/data_loaders/multiprocess_data_loader.py", line 296, in __init__
+    deque(self.iter_instances(), maxlen=0)
+  File "/Users/alex/opt/anaconda3/lib/python3.7/site-packages/allennlp/data/data_loaders/multiprocess_data_loader.py", line 365, in iter_instances
+    self.reader.read(self.data_path), desc="loading instances"
+  File "/Users/alex/opt/anaconda3/lib/python3.7/site-packages/tqdm/std.py", line 1180, in __iter__
+    for obj in iterable:
+  File "/Users/alex/opt/anaconda3/lib/python3.7/site-packages/allennlp/data/dataset_readers/dataset_reader.py", line 192, in read
+    for instance in self._multi_worker_islice(self._read(file_path)):  # type: ignore
+  File "/Users/alex/Projects/usc-research/controlled-sequence-gen/editing/src/predictors/news_discourse/news_discourse_dataset_reader.py", line 77, in _read
+    local_path = download_file_to_filepath(self.DATA_URL)
+  File "/Users/alex/Projects/usc-research/controlled-sequence-gen/util/utils_data_access.py", line 125, in download_file_to_filepath
+    fs.get(remote_file_name, local_path)
+  File "/Users/alex/opt/anaconda3/lib/python3.7/site-packages/fsspec/asyn.py", line 72, in wrapper
+    return sync(self.loop, func, *args, **kwargs)
+  File "/Users/alex/opt/anaconda3/lib/python3.7/site-packages/fsspec/asyn.py", line 53, in sync
+    raise result[0]
+  File "/Users/alex/opt/anaconda3/lib/python3.7/site-packages/fsspec/asyn.py", line 20, in _runner
+    result[0] = await coro
+  File "/Users/alex/opt/anaconda3/lib/python3.7/site-packages/fsspec/asyn.py", line 322, in _get
+    batch_size=batch_size,
+  File "/Users/alex/opt/anaconda3/lib/python3.7/site-packages/fsspec/asyn.py", line 144, in _throttled_gather
+    results.extend(await asyncio.gather(*chunk, **gather_kwargs))
+  File "/Users/alex/opt/anaconda3/lib/python3.7/site-packages/s3fs/core.py", line 878, in _get_file
+    **self.req_kw,
+  File "/Users/alex/opt/anaconda3/lib/python3.7/site-packages/s3fs/core.py", line 252, in _call_s3
+    raise translate_boto_error(err)
+  File "/Users/alex/opt/anaconda3/lib/python3.7/site-packages/s3fs/core.py", line 233, in _call_s3
+    out = await method(**additional_kwargs)
+  File "/Users/alex/opt/anaconda3/lib/python3.7/site-packages/aiobotocore/client.py", line 142, in _make_api_call
+    operation_model, request_dict, request_context)
+  File "/Users/alex/opt/anaconda3/lib/python3.7/site-packages/aiobotocore/client.py", line 161, in _make_request
+    return await self._endpoint.make_request(operation_model, request_dict)
+  File "/Users/alex/opt/anaconda3/lib/python3.7/site-packages/aiobotocore/endpoint.py", line 83, in _send_request
+    exception):
+  File "/Users/alex/opt/anaconda3/lib/python3.7/site-packages/aiobotocore/endpoint.py", line 217, in _needs_retry
+    caught_exception=caught_exception, request_dict=request_dict)
+  File "/Users/alex/opt/anaconda3/lib/python3.7/site-packages/aiobotocore/hooks.py", line 29, in _emit
+    response = handler(**kwargs)
+  File "/Users/alex/opt/anaconda3/lib/python3.7/site-packages/botocore/retryhandler.py", line 183, in __call__
+    if self._checker(attempts, response, caught_exception):
+  File "/Users/alex/opt/anaconda3/lib/python3.7/site-packages/botocore/retryhandler.py", line 251, in __call__
+    caught_exception)
+  File "/Users/alex/opt/anaconda3/lib/python3.7/site-packages/botocore/retryhandler.py", line 277, in _should_retry
+    return self._checker(attempt_number, response, caught_exception)
+  File "/Users/alex/opt/anaconda3/lib/python3.7/site-packages/botocore/retryhandler.py", line 317, in __call__
+    caught_exception)
+  File "/Users/alex/opt/anaconda3/lib/python3.7/site-packages/botocore/retryhandler.py", line 223, in __call__
+    attempt_number, caught_exception)
+  File "/Users/alex/opt/anaconda3/lib/python3.7/site-packages/botocore/retryhandler.py", line 359, in _check_caught_exception
+    raise caught_exception
+  File "/Users/alex/opt/anaconda3/lib/python3.7/site-packages/aiobotocore/endpoint.py", line 148, in _do_get_response
+    http_response = await self._send(request)
+  File "/Users/alex/opt/anaconda3/lib/python3.7/site-packages/aiobotocore/endpoint.py", line 230, in _send
+    return await self.http_session.send(request)
+  File "/Users/alex/opt/anaconda3/lib/python3.7/site-packages/aiobotocore/httpsession.py", line 156, in send
+    request.method, url=url, headers=headers_, data=data, proxy=proxy_url)
+  File "/Users/alex/opt/anaconda3/lib/python3.7/site-packages/aiohttp/client.py", line 521, in _request
+    req, traces=traces, timeout=real_timeout
+  File "/Users/alex/opt/anaconda3/lib/python3.7/site-packages/aiohttp/connector.py", line 535, in connect
+    proto = await self._create_connection(req, traces, timeout)
+  File "/Users/alex/opt/anaconda3/lib/python3.7/site-packages/aiohttp/connector.py", line 892, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+  File "/Users/alex/opt/anaconda3/lib/python3.7/site-packages/aiohttp/connector.py", line 1011, in _create_direct_connection
+    raise ClientConnectorError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorError: Cannot connect to host s3.dev.obdc.bcs.bloomberg.com:80 ssl:default [nodename nor servname provided, or not known]

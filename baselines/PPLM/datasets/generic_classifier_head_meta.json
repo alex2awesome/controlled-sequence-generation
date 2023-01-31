@@ -1,0 +1,1 @@
+{"class_size": 9, "embed_size": 1024, "model_type": "gpt2", "pretrained_model": "gpt2-medium", "class_vocab": {"Cause_General": 0, "Cause_Specific": 1, "Distant_Anecdotal": 2, "Distant_Evaluation": 3, "Distant_Expectations_Consequences": 4, "Distant_Historical": 5, "Error": 6, "Main": 7, "Main_Consequence": 8}, "default_class": 0}
