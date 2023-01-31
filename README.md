@@ -18,7 +18,7 @@ Here is our problem forumation:
 ![](presentation/equation-1.png)
 ![](presentation/equation-2.png)
 
-Here is an example of an article structure:
+Where `c` is a vector of class labels indicating the desired structure, 1 per sentence in our desired output. Here is an example of an article structure:
 
 <figure class="image">
 <img style="float: right;" src="presentation/cover-image.png">
@@ -26,6 +26,15 @@ Here is an example of an article structure:
 </figure>
 
 ## Repository Overview
+
+We solve this problem using the following pipeline:
+
+<figure class="image">
+<img style="float: right;" src="presentation/generation-flow.png">
+<figcaption>Words are generated sequentially by the generator, which is controlled by the discriminator. Then, optionally, the sentence can be edited to make it further class-aware.</figcaption>
+</figure>
+
+Please see the paper for additional details as well as experiments.
 
 The code necessary to train the various components of our work is given in the following sections:
 
