@@ -8,7 +8,7 @@ https://arxiv.org/pdf/2301.02299
 
 ## Goal 
 
-[][cover-image.png]
+<img style="float: right;" src="cover-image.png">
 
 Previous attempts at language modeling, we find, generate fluent and legible documents that nevertheless fail to follow typical writing structures present in human writing. For example, the _inverse pyramid_ is a common rhetorical structure used by journalists to write news articles: the most important information is presented first, followed by context, background, and analysis. We find, in our paper, that although GPT2 generates articles that _seem_ human-like in their structure, even the famous Ovid's Unicorn is decidedly not human-like.
 
