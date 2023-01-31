@@ -1,0 +1,40 @@
+Performance on test set: Average loss: 1.2004, Accuracy: 1082/1815 (60%)
+F1 Score Weighted: 0.5612340335128546
+F1 Score Macro: 0.45011360127574856
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.50      0.78      0.61       454
+           1       0.50      0.02      0.03       121
+           2       0.52      0.24      0.33        55
+           3       0.60      0.76      0.67       478
+           4       0.56      0.38      0.45       189
+           5       0.52      0.42      0.47       137
+           6       0.96      0.93      0.94       164
+           7       0.89      0.41      0.56       174
+           8       0.00      0.00      0.00        43
+
+   micro avg       0.60      0.60      0.60      1815
+   macro avg       0.56      0.44      0.45      1815
+weighted avg       0.60      0.60      0.56      1815
+
+Epoch took: 79.729s
+
+Example prediction
+Input sentence: This is incredible! I love it, this is the best chicken I have ever had.
+Predictions: Cause_General: 0.0408, Cause_Specific: 0.0130, Distant_Anecdotal: 0.2842, Distant_Evaluation: 0.5697, Distant_Expectations_Consequences: 0.0379, Distant_Historical: 0.0294, Error: 0.0007, Main: 0.0188, Main_Consequence: 0.0055
+uploading model file to: baselines/PPLM/output_dir/generic_classifier_head_epoch_10.pt...
+Test performance per epoch
+epoch	loss	acc
+1	1.6837422226414536	0.42534435261707987
+2	1.5192250926960926	0.5101928374655648
+3	1.4251111285417204	0.5482093663911846
+4	1.3608068650090661	0.5564738292011019
+5	1.3158105876491746	0.5691460055096419
+6	1.2848675814541903	0.5746556473829201
+7	1.2560144009340564	0.581267217630854
+8	1.2338946949351917	0.5845730027548209
+9	1.2133385209012624	0.590633608815427
+10	1.200369439243285	0.5961432506887052
+Min loss: 1.200369439243285 - Epoch: 10
+Max acc: 0.5961432506887052 - Epoch: 10

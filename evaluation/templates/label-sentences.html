@@ -1,0 +1,833 @@
+<HTMLQuestion xmlns="http://mechanicalturk.amazonaws.com/AWSMechanicalTurkDataSchemas/2011-11-11/HTMLQuestion.xsd">
+<HTMLContent><![CDATA[
+
+<!-- YOUR HTML BEGINS -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+<script type='text/javascript' src='https://s3.amazonaws.com/mturk-public/externalHIT_v1.js'></script>
+</head>
+<link type="text/css" href="https://getbootstrap.com/1.0.0/assets/css/bootstrap-1.0.0.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="https://d3js.org/d3.v5.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://creativecouple.github.io/jquery-timing/jquery-timing.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+<!-- ContextMenu -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.contextMenu.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.contextMenu.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.ui.position.js"></script>
+
+<!-- alertify -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/AlertifyJS/1.13.1/alertify.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/AlertifyJS/1.13.1/css/alertify.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/AlertifyJS/1.13.1/css/themes/bootstrap.min.css">
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/AlertifyJS/1.13.1/css/themes/default.css"> -->
+
+<script src="https://cdn.jsdelivr.net/gh/qiao/difflib.js/dist/difflib-browser.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/gh/musclesoft/jquery-connections/jquery.connections.js"></script>
+<script src="{{ url_for('static', filename='js/decision-tree.js')}}"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/buttons.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/decision-tree.css')}}">
+
+
+
+<style>
+    .hidden {
+    transition: opacity 1s ease-out;
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+.example{
+    background-color: #efefef;
+    margin-left: 20px;
+    margin-right: 50px;
+    padding: 10px;
+    padding-bottom: 1px;
+}
+
+.highlighted {
+	background-color: yellow;
+}
+
+.shaded {
+	border-color: #55f;
+    /*border-radius: 20px;*/
+    /*border-width: 5px;*/
+}
+
+.dropdown-menu {
+    position: absolute;
+    z-index: 100;
+}
+
+
+.annotation{
+    height: 50%;
+}
+
+.text-block:hover{
+    background-color: #C9CBCBCB
+}
+
+.header{
+    background-color: white;
+}
+
+.category_Main{
+    background-color: rgba(31, 119, 180, 0.51);
+    border-radius: 5px;
+}
+.category_Main_Consequence{
+    background-color: rgba(255, 127, 14, 0.49);
+    border-radius: 5px;
+}
+.category_Cause_General{
+    background-color: rgba(44, 160, 44, 0.51);
+    border-radius: 5px;
+}
+.category_Cause_Specific{
+    background-color: rgba(23, 190, 207, 0.53);
+    border-radius: 5px;
+}
+.category_Distant_Historical{
+    background-color: rgba(148, 103, 189, 0.51);
+    border-radius: 5px;
+}
+.category_Distant_Anecdotal{
+    background-color: rgba(140, 86, 75, 0.53);
+    border-radius: 5px;
+}
+.category_Distant_Evaluation{
+    background-color: rgba(227, 119, 194, 0.54);
+    border-radius: 5px;
+}
+.category_Distant_Expectations_Consequences{
+    background-color: rgba(188, 189, 34, 0.51);
+    border-radius: 5px;
+}
+.category_Error{
+    background-color: rgba(214, 39, 40, 0.48);
+    border-radius: 5px;
+}
+
+#submitButton{
+    z-index: 5;
+}
+
+#feedback{
+    width: 100%;
+}
+
+hr.hr-medium{
+    border: 3px solid black;
+}
+
+body{
+    margin: 10px !important;
+}
+
+.space{
+    height: 10px;
+}
+
+.outline{
+    background-color: white;
+}
+
+</style>
+<!-- jquery connections -->
+<body>
+
+
+<form name='mturk_form' method='post' id='mturk_form' action='/mturk/externalSubmit'>
+<input type='hidden' value='' name='assignmentId' id='assignmentId'/>
+
+<div class="table table-hover container">
+    <div class="row instructions">
+        <div class="col-12">
+            <div id="accordion">
+              <div class="card">
+                <div class="card-header" id="hello_header">
+                  <h5 class="mb-0">
+                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#hello">
+                      Hello, about us, and thank you for your help!
+                    </button>
+                  </h5>
+                </div>
+                <div id="hello" class="collapse show" aria-labelledby="hello_header" data-parent="#accordion">
+                  <div class="card-body">
+                    Hello! We are small research lab in University of Southern California trying to build AI tools to help
+                    citizens better understand the work journalists do.
+                    <br><br>
+                    We are calibrating our payment scheme <b>to meet a $15 per hour wage and will reward workers who take time
+                    to give correct answers</b>.
+                    <br><br>
+                    If you perform well, we will invite you to participate in future, well-paying trials. If you speed through and give nonsense
+                    answers, <b>we will block you and report to Mechanical Turk</b>. We understand the pressures of Mechanical Turk, but we are a
+                    small lab and cannot afford to throw out too much data.
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-header" id="headingTwo">
+                  <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" data-toggle="collapse" type="button" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                      Instructions
+                    </button>
+                  </h5>
+                </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                    <div class="card-body">
+                        <h4>Questions</h4>
+                        For each sentence in the news article below, please identify:
+                        <ul>
+                            <li><b>Question 1:</b> It's function in the overall news story.</li>
+                            <li><b>Question 2:</b> How grammatical it is (# errors you spot).</li>
+                            <li><b>Question 3:</b> How coherent it is in the overall story.</li>
+                        </ul>
+
+                        <h4>Definitions</h4>
+                        <p>For <b>Question 1</b>, we use the following definitions for each label.</p>
+
+                        <p>It might be more helpful to refer to our "Guide" section to see a set of questions that help to determine the right answer.</p>
+
+                        <ul>
+                            <li><b>Main story:</b></li>
+                            <ul>
+                                <li><span class="category_Main">Main Event:</span> Sentences describing the main event; i.e. the major subject of an article. Main event is the most recent event that gave rise to a news report. Generally, main event should have happened already. However, main event can be a projected event since some news articles focus on events that are to happen soon.</li>
+                                <li><span class="category_Main_Consequence">Consequences:</span> Sentences describing the real consequences of main events that often happen right after main events and are due to main events.</li>
+                            </ul>
+                            <li><b>Context-informing content:</b></li>
+                            <ul>
+                                <li><span class="category_Cause_Specific">Previous Event:</span> Sentences describing previous events that are specific, have occurred recently and inform the cause of main events. Note that sentences describing events that acted as the pre-condition for main event also belong to this category.</li>
+                                <li><span class="category_Cause_General">Current Context:</span> Sentences describing any general circumstances that inform the cause of main events. Sentences describing actual situation in which the main event took place. They should have temporal co-occurrence with the main event or talk about the ongoing situation.</li>
+                            </ul>
+                            <li><b>Distantly-related content:</b></li>
+                            <ul>
+                                <li><span class="category_Distant_Historical">Historical Event:</span> Sentences describing previous events that have not occurred recently, at least 2 months prior to the main event. Sentences describing events that occurred in previous years with no specification of time elapsed.</li>
+                                <li><span class="category_Distant_Anecdotal">Anecdotal Event:</span> Sentences describing events that are anecdotal, such events may happen before or after main events. Anecdotal events are specific events with specific participants that are uncertain (may happen in future) or can't be verified (happened in past). In case of speech, if the statement was made in a private discussion (verbal or written) and is unverifiable.</li>
+                                <li><span class="category_Distant_Evaluation">Evaluation:</span> Sentences that are explicitly an opinion and comment on any events in the story.</li>
+                                <li><span class="category_Distant_Expectations_Consequences">Expectations:</span> Sentences describing expectations about the resolution or possible consequences of any events in the future.</li>
+                            </ul>
+                            <li><b>Error:</b></li>
+                            <ul>
+                                <li>Any sentence that isn't part of the story at all, is mishappen, doesn't make sense, etc.</li>
+                                <ul>
+                                    <li>(Ex) <i>Slideshow (% images) </i></li>
+                                    <li>(Ex) <i>Editing by XYZ</i></li>
+                                    <li>(Ex) <i>Visit news.org</i></li>
+                                </ul>
+                            </ul>
+                        </ul>
+                    </div>
+                </div>
+              </div>
+                <div class="card">
+                <div class="card-header" id="headingThree">
+                  <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" data-toggle="collapse" type="button" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                      Cheat sheet/Guide
+                    </button>
+                  </h5>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                    <div class="card-body">
+                        <p>In order to help with these annotations, we've create a set of simple questions to ask about each sentence.</p>
+
+                        <div class="tree-container">
+                          <div class="q-container">
+                            <ul class="tree">
+                              <li class="question">Does this sentence describe a specific event that occurred?
+                                <li class="option"><input name="lvl1" type="radio"><span class="text">Yes</span>
+                              <ul>
+                                  <li class="question">How does it relate to the main event of the news article?
+                                  <li class="option"><input name="lvl2" type="radio"><span class="text">It <b><i><u>is</u></i></b> the main event of the news article.</span>
+                                  <ul>
+                                      <li class="answer">Main Event.
+                                  </ul>
+                                  <li class="option"><input name="lvl2" type="radio"><span class="text">It occurs <b><i><u>before</u></i></b> the main event of the news article.</span>
+                                  <ul>
+                                      <li class="question">How far before?
+                                      <li class="option"><input name="lvl3" type="radio"><span class="text"><b><i><u>Less than</u></i></b> one month.</span>
+                                      <ul>
+                                          <li class="answer">Previous Event.
+                                      </ul>
+                                      <li class="option"><input name="lvl3" type="radio"><span class="text"><b><i><u>More than</u></i></b> one month.</span>
+                                      <ul>
+                                          <li class="answer">Historical Event.
+                                      </ul>
+                                  </ul>
+                                  <li class="option"><input name="lvl3" type="radio"><span class="text"> It occurs <b><i><u>after</u></i></b> the main event of the news article.</span>
+                                  <ul>
+                                      <li class="answer">Consequence.
+                                  </ul>
+                                  <li class="option"><input name="lvl3" type="radio"> <span class="text">It's an anecdote, not a plot point. Timing doesn't matter.</span>
+                                  <ul>
+                                      <li class="answer">Anecdotal Event.
+                                  </ul>
+                              </ul>
+                                <li class="option"><input name="lvl1" type="radio"><span class="text">No</span>
+                              <ul>
+                              <li class="question">How does this relate to the main event?
+                                  <li class="option"><input name="lvl3" type="radio"><span class="text">Describes current context leading up to it.</span>
+                              <ul>
+                                  <li class="answer">Current context
+                              </ul>
+                                  <li class="option"><input name="lvl3" type="radio"><span class="text">Evaluates it/shares opinion.</span>
+                              <ul>
+                                  <li class="answer">Evaluation
+                              </ul>
+                                  <li class="option"><input name="lvl3" type="radio"><span class="text">Shares expectations/predicts what will happen.</span>
+                              <ul>
+                                  <li class="answer">Expectations
+                              </ul>
+                              </ul>
+                            </ul>
+                            </ul>
+                          </div>
+                          <button id="goBack" class="treeControls">Back</button>
+                          <button id="reset" class="treeControls">Reset</button>
+                        </div>
+            </div>
+            </div>
+            </div>
+          </div>
+         </div>
+        </div>
+    </div>
+    <br>
+    <hr class="hr-medium">
+    <br>
+    <h2><u>Task:</u></h2>
+    <p><em>Right click and select "Remove" for all connections between sentences that do NOT match.
+       <br>Read above for more detailed instructions and examples.</em></p>
+    <br>
+    <div class="row header sticky-top">
+        <div class="col-6">
+            <h4>Headline: {{ headline }}</h4>
+            <p>Article Key: {{ doc_id }}</p>
+        </div>
+        <div class="col-1 filler"></div>
+        <div class="col-5">
+<!--            <div class="card ">-->
+            <div class="row">
+                <div class="col-4 text-center">
+                    <h4>Which label that best describes this text?</h4> (See Cheat Sheet/Guide for help!)
+                </div>
+                <div class="col-4 text-center">
+                    <h4>How many grammar errors do you spot?</h4> (Doesn't have to be precise, just things that seem off!)
+                </div>
+                <div class="col-4 text-center">
+                    <h4>Does this text make sense in the flow?</h4> (In relation to surrounding sentences and the main story/event.)
+                </div>
+            </div>
+<!--            </div>-->
+        </div>
+        </div>
+    <br>
+    <hr>
+    {% for sentence in sentences %}
+    <div class="row text-block align-items-center" >
+        <div class="col-6 text" doc_id="{{ doc_id }}" >{{ sentence }}</div>
+        <div class="col-1 filler" doc_id="{{ doc_id }}" ></div>
+        <div class="col-5 buttons" doc_id="{{ doc_id }}" >
+            <div class="row align-items-center text-center">
+                <!--     Coarse-grained Class Dropdown       -->
+                <div class="class-label-dropdown dropdown col-4 justify-content-center">
+                  <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Select One
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <label class="dropdown-item" label="Main">Main Event</label>
+                    <label class="dropdown-item" label="Main_Consequence">Consequence</label>
+                    <label class="dropdown-item" label="Cause_General">Previous Event</label>
+                    <label class="dropdown-item" label="Cause_Specific">Current Context</label>
+                    <label class="dropdown-item" label="Distant_Historical">Historical Event</label>
+                    <label class="dropdown-item" label="Distant_Anecdotal">Anecdotal Event</label>
+                    <label class="dropdown-item" label="Distant_Evaluation">Evaluation</label>
+                    <label class="dropdown-item" label="Distant_Expectations_Consequences">Expectation</label>
+                    <label class="dropdown-item" label="Error">Can't Tell</label>
+                  </div>
+                </div>
+
+                <!-- Fine-grained Class Dropdown           -->
+<!--                <div class="class-label-dropdown dropdown col-3">
+                  <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Select One
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                    <label class="dropdown-item" label="Main">Main Event</label>
+                    <label class="dropdown-item" label="Main_Consequence">Consequence</label>
+                    <label class="dropdown-item" label="Error">Can't Tell</label>
+                  </div>
+                </div>
+                <div class="class-label-dropdown dropdown col-3">
+                  <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Select One
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
+                    <label class="dropdown-item" label="Cause_General">Previous Event</label>
+                    <label class="dropdown-item" label="Cause_Specific">Current Context</label>
+                    <label class="dropdown-item" label="Error">Can't Tell</label>
+                  </div>
+                </div>
+                <div class="class-label-dropdown dropdown col-3">
+                  <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Select One
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton4">
+                    <label class="dropdown-item" label="Distant_Historical">Historical Event</label>
+                    <label class="dropdown-item" label="Distant_Anecdotal">Anecdotal Event</label>
+                    <label class="dropdown-item" label="Distant_Evaluation">Evaluation</label>
+                    <label class="dropdown-item" label="Distant_Expectations_Consequences">Expectation</label>
+                    <label class="dropdown-item" label="Error">Can't Tell</label>
+                  </div>
+                </div>
+                -->
+
+                <!--     Locally Sensible       -->
+                <div class="sensibility col-4 text-center">
+                  <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <label class="btn btn-1 btn-sm" label="locally_sensible_1">
+                            <input type="radio" name="options" autocomplete="off">>4</label>
+                        <label class="btn btn-1 btn-sm" label="locally_sensible_1">
+                            <input type="radio" name="options" autocomplete="off">1-4</label>
+                        <label class="btn btn-5 btn-sm" label="locally_sensible_2">
+                            <input type="radio" name="options" autocomplete="off">0</label>
+                  </div>
+                </div>
+                <!--     Globally Sensible       -->
+                <div class="global-sensibility col-4 text-center">
+                  <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <label class="btn btn-1 btn-sm" label="globally_sensible_1">
+                            <input type="radio" name="options" autocomplete="off">No.</label>
+                        <label class="btn btn-3 btn-sm" label="globally_sensible_2">
+                            <input type="radio" name="options" autocomplete="off">Mostly</label>
+                        <label class="btn btn-5 btn-sm" label="globally_sensible_3">
+                            <input type="radio" name="options" autocomplete="off">Yes!</label>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row space"></div>
+    {% endfor %}
+    <div class="row annotation">
+	    <div class="error question col-4" doc_id="{{ doc_id }}" error_type='error'>
+		  <p>
+    	  <h4>Does this question have errors?</h4>
+    	  <div id="error_btn_grp" class="btn-group-vertical btn-group-toggle" role="group" data-toggle="buttons">
+              <div class="btn-group">
+                <label class="btn btn-outline-success btn-sm active" label="legit">
+                    <input type="radio" name="options" autocomplete="off" checked>No errors</label>
+                <label class="btn btn-outline-danger btn-sm" label="incom_sentence">
+                 <input type="radio" name="options" autocomplete="off" checked>Incomplete Sentences</label>
+              </div>
+              <div class="btn-group">
+                <label class="btn btn-outline-danger btn-sm" label="other" id="otherbutton">
+                    <input type="radio" name="options" autocomplete="off" checked>Other</label>
+                <input id="otherform" type="text" class="form-control hidden"
+                       aria-label="Text input with radio button" placeholder="Specify...">
+              </div>
+		  </div>
+		  </p>
+		</div>
+	    <div class="error question col-4" doc_id="{{ doc_id }}" error_type='confidence'>
+		  <p>
+    	  <h4>How confident are you in this tagging?</h4>
+    	  <div class="btn-group-vertical btn-group-toggle" role="group" data-toggle="buttons">
+              <div class="btn-group">
+                <label class="btn btn-outline-success btn-sm" label="redo">
+                    <input type="radio" name="options" autocomplete="off" checked>1 - Needs Redo</label>
+                <label class="btn btn-outline-success btn-sm" label="check">
+                    <input type="radio" name="options" autocomplete="off" checked>2 - Needs Check</label>
+                <label class="btn btn-outline-success btn-sm" label="glance">
+                    <input type="radio" name="options" autocomplete="off" checked>3 - Needs Glance</label>
+              </div>
+              <div class="btn-group">
+                <label class="btn btn-outline-success btn-sm active" label="ok">
+                    <input type="radio" name="options" autocomplete="off" checked>4 - Should be OK</label>
+                <label class="btn btn-outline-success btn-sm" label="perfect">
+                    <input type="radio" name="options" autocomplete="off" checked>5 - Confident</label>
+              </div>
+		  </div>
+		 </p>
+		</div>
+		 </p>
+      </div>
+    </div>
+
+<div id=moving_div></div> <!-- small div to track with the line. -->
+<input type='hidden' value='' name='data' id='data'/>
+<div class="container">
+    <div class="row">
+        <input class="btn btn-outline-success" type='submit' id='submitButton' value='Submit'>
+    </div>
+<hr>
+    <div class="row">
+        <div class="col-12">
+        <h3>Optional Feedback:</h3>
+            <p>
+            We'd love to hear some feedback on this task: if any parts were confusing, or the task itself could
+            be formulated better, we'd love to hear any comments, ideas or suggestions. We really appreciate your help!
+            </p>
+        </div>
+        <hr>
+        <div class="col-12">
+            <textarea type='text' value='' name='feedback' id='feedback' placeholder='Optional feedback here...'></textarea>
+        </div>
+    </div>
+</div>
+</form>
+
+<script language='Javascript'>
+
+    textblockpool_class_mapper= {
+        'x': '.textblock_pool_version_x',
+        'y': '.textblock_pool_version_y'
+    }
+
+    $('#otherbutton').on('click', function(d){
+        $('#otherform').removeClass('hidden')
+    })
+
+    $('#otherform').on('click', function(d){
+        $('#error_btn_grp').find('label').removeClass('active')
+        $('#otherbutton').addClass('active')
+    })
+
+    $('#otherbutton2').on('click', function(d){
+        $('#otherform2').removeClass('hidden')
+    })
+
+    $('#otherform2').on('click', function(d){
+        $('#law_type_btn_grp').find('label').removeClass('active')
+        $('#otherbutton2').addClass('active')
+    })
+
+    Array.prototype.max = function() {
+      return Math.max.apply(null, this);
+    };
+
+    Array.prototype.min = function() {
+      return Math.min.apply(null, this);
+    };
+
+    // handle radio-button clicking
+    $('.sensibility').find('label').addClass('outline')
+    $('.global-sensibility').find('label').addClass('outline')
+    $('.class-label-dropdown').find('.dropdown-item').on('click', function(){
+        // find previously active buttons
+        var active_item = $(this).parent().find('.active')
+        $(active_item).each(function(i, d){
+            $(d).removeClass('active')
+            var prev_label = $(d).attr('label')
+            $(d).parents('.row.text-block')
+                .find('.text')
+                .removeClass('category_' + prev_label)
+            $(d).parents('.class-label-dropdown')
+                .find('.dropdown-toggle')
+                .removeClass('category_' + prev_label)
+        })
+
+        // add the active category to the button and the text
+        $(this).addClass('active')
+        var class_label = $(this).attr('label')
+        $(this).parents('.row.text-block')
+            .find('.text')
+            .addClass('category_' + class_label)
+
+        // set text on the header
+        var class_text = $(this).text()
+        $(this).parents('.class-label-dropdown')
+            .find('.dropdown-toggle')
+            .text(class_text)
+            .addClass('category_' + class_label)
+
+    })
+
+    // handle dropdown menu labeling
+
+
+    data = JSON.parse('{{ sentences | tojson | safe }}'.replaceAll('NaN', 'null'))
+    data
+
+
+    //
+    // mturk
+    //
+    // handle data
+    //
+    class SubmitHandler{
+        constructor() {
+            turkSetAssignmentID();
+            this.GENERIC_THANKS_MESSAGE = 'Thank you so much for your help with our task!'
+            this.output = []
+            this.break = false
+            this.class_counts = {
+                'Main Event': 0,
+                'Consequence': 0,
+                'Previous Event': 0,
+                'Current Context': 0,
+                'Historical Event': 0,
+                'Anecdotal Event': 0,
+                'Evaluation': 0,
+                'Expectation': 0,
+                'Can\'t Tell': 0,
+            }
+            this.sensitivity_counts = {
+                1: 0,
+                2: 0,
+                3: 0,
+                4: 0,
+                5: 0,
+            }
+            this.global_sensitivity_counts = {
+                1: 0,
+                2: 0,
+                3: 0,
+                4: 0,
+                5: 0,
+            }
+            this.total_count = $('.text-block').length
+        }
+
+        _missing_data_alert(message){
+            var that = this
+            alertify.alert(
+                'Missing data!',
+                message,
+                function(){
+                    alertify.success(that.GENERIC_THANKS_MESSAGE);
+                }
+            );
+        }
+
+        _check_data(class_label, local_sensibility, global_sensibility){
+            var that = this
+            if (class_label.length == 0){
+                that.break = true
+                that._missing_data_alert('You\'re missing one or more label selection (1st column)! Please check each dropdown' +
+                    ' to make sure you\'ve selected and option or "Can\'t Tell" if you don\'t know.')
+            }
+            if (local_sensibility.length == 0){
+                that.break = true
+                that._missing_data_alert('You\'re missing one or more grammar check (2nd column)! Please check each' +
+                    ' row and select a score from 1-to-5 to indicate how grammatical you think each sentence is.')
+            }
+            if (global_sensibility.length == 0){
+                that.break = true
+                that._missing_data_alert('You\'re missing one or more global coherence check (3rd column)! Please check each' +
+                    ' row and select a score from 1-to-5 to indicate how relevant the sentence is to the overall topic.')
+            }
+
+        }
+
+        _format_and_push_data(block_idx, text, class_label, local_sensitivity, global_sensitivity){
+            var that = this
+            class_label.each(function(i, d){
+                that.output.push({
+                    "experiment": "{{ experiment }}",
+                    "doc_id": "{{ doc_id }}",
+                    "sent_idx": block_idx,
+                    "question_class": "class label",
+                    "answer": $(d).attr('label')
+                })
+                var human_label = $(d).text()
+                that.class_counts[human_label]++
+            })
+            local_sensitivity.each(function(i, d){
+                var sensitivity = $(d).attr('label').split('_')[2]
+                that.output.push({
+                    "experiment": "{{ experiment }}",
+                    "doc_id": "{{ doc_id }}",
+                    "sent_idx": block_idx,
+                    "question_class": "local sensibility",
+                    "answer": sensitivity
+                })
+                that.sensitivity_counts[sensitivity]++
+            })
+            global_sensitivity.each(function(i, d){
+                var global_sensitivity = $(d).attr('label').split('_')[2]
+                that.output.push({
+                    "experiment": "{{ experiment }}",
+                    "doc_id": "{{ doc_id }}",
+                    "sent_idx": block_idx,
+                    "question_class": "global sensibility",
+                    "answer": global_sensitivity
+                })
+                that.global_sensitivity_counts[global_sensitivity]++
+            })
+        }
+
+        get_data_from_dom() {
+            var that = this
+            $('.text-block').each(function(i, d){
+                var text = $(d).find('.text').text()
+                var class_label = $(d).find('.class-label-dropdown').find('.active')
+                var local_sensibility = $(d).find('.sensibility').find('.active')
+                var global_sensibility = $(d).find('.global-sensibility').find('.active')
+                that._check_data(class_label, local_sensibility, global_sensibility)
+                if (that.break){
+                    return false
+                }
+                that._format_and_push_data(i, text, class_label, local_sensibility, global_sensibility)
+            })
+        }
+
+        gather_and_submit_data(submit_button, submit_click_event) {
+            this.submit_button = submit_button
+            this.submit_click_event = submit_click_event
+            this.get_data_from_dom()
+            if (!this.break) {
+                this.first_confirm() // -> second_confirm -> third_confirm -> submit_data
+            }
+        }
+
+        first_confirm(){
+            var that = this
+            // First question
+            var class_names = Object.keys(that.class_counts)
+            var class_ratios = class_names.map(function(d, i){
+                return that.class_counts[d] / that.total_count
+            })
+            var max_class_ratio = class_ratios.max()
+            if (max_class_ratio > .8) {
+                alertify.confirm(
+                    "You\'ve chosen the same class, " + class_names[class_ratios.indexOf(max_class_ratio)] + ", "
+                    + class_ratios.max() * 100 + "% of the time. That's unexpected." +
+                    " Are you sure that's right? Please note, we will be checking your answers against other workers."
+                ).set('header', '<em>Checking number of classes selected...</em>')
+                    .set('labels', {
+                        ok: "Continue, submit!",
+                        cancel: "Let me recheck..."
+                    })
+                    .set('onok', function () {
+                        alertify.success(that.GENERIC_THANKS_MESSAGE)
+                        that.second_confirm()
+                    })
+                    .set('oncancel', function () {
+                        alertify.error('Thanks for being diligent! Please recheck and resubmit!')
+                    })
+            } else {
+                that.second_confirm()
+            }
+        }
+
+        second_confirm(){
+            var that = this
+            setTimeout(function() {
+                var sens_keys = Object.keys(that.sensitivity_counts)
+                var sens_ratios = sens_keys.map(function(d, i){
+                    return that.sensitivity_counts[d] / that.total_count
+                })
+                var sens_r_max = sens_ratios.max()
+
+                var g_sens_keys = Object.keys(that.global_sensitivity_counts)
+                var g_sens_ratios = g_sens_keys.map(function(d, i){
+                    return that.global_sensitivity_counts[d] / that.total_count
+                })
+                var g_sens_r_max = g_sens_ratios.max()
+                var to_confirm = false
+                var messages = []
+                if (sens_r_max > .8){
+                    to_confirm = true
+                    var m = sens_r_max * 100 + "% of sentences have a local coherence score of " + sens_keys[sens_ratios.indexOf(sens_r_max)]
+                    messages.push(m)
+                }
+                // Second Question.
+                if (g_sens_r_max > .8) {
+                    to_confirm = true
+                    var m = g_sens_r_max * 100 + "% of sentences have a global coherence score of " + g_sens_keys[g_sens_ratios.indexOf(g_sens_r_max)]
+                    messages.push(m)
+                }
+                if (to_confirm){
+                    alertify.confirm(
+                        "You\'ve said that over " + messages.join(' and ') + '.' +
+                        " Is that correct?",
+                    )
+                        .set('header', '<em>Checking local coherence scores...</em>')
+                        .set('labels', {
+                            ok: "Continue, submit!",
+                            cancel: "Let me recheck..."
+                        })
+                        .set('onok', function () {
+                            alertify.success(that.GENERIC_THANKS_MESSAGE)
+                            that.third_confirm()
+                        })
+                        .set('oncancel', function () {
+                            alertify.error('Thanks for being diligent! Please recheck and resubmit!')
+                        })
+                        // .set('onclose', function () { });
+                 // otherwise, skip straight to the final confirm
+                } else {
+                    that.third_confirm()
+                }
+            }, 700)
+        }
+
+        third_confirm(){
+            var that = this
+            setTimeout(function() {
+                alertify.confirm(
+                    "Great! Your submission is valid. Do you want to recheck your answers?"
+                ).set('header', '<em>Looks good! Ready to Submit?</em>')
+                    .set('labels', {
+                        ok: "Continue, submit!",
+                        cancel: "Let me recheck..."
+                    })
+                    .set('onok', function () {
+                        alertify.success('Ok! Submitting...')
+                        alertify.success(that.GENERIC_THANKS_MESSAGE)
+                        that.submit_data()
+                    })
+                    .set('oncancel', function () {
+                        alertify.error('Thanks for being diligent! Please recheck and resubmit!')
+                    })
+            }, 700)
+        }
+        submit_data(){
+            {% if do_mturk %}
+            // submit mturk
+            $('#data').attr('value', JSON.stringify(this.output))
+            $(this.submit_button).trigger(this.submit_click_event.type);
+            {% else %}
+            // submit AJAX
+            this.output['start_time'] = "{{ start_time }}"
+            $.ajax({
+                url: "/post_task",
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(this.output),
+                success: function (result) {
+                    if (result === "success") location.href = "/view_task"
+                }
+            })
+            {% endif %}
+        }
+    }
+
+    // submit button click
+    var clicked=false
+    $('#submitButton').on('click', function(submit_click_event){
+        var sh = new SubmitHandler()
+        var submit_button = this
+        submit_click_event.preventDefault();
+        sh.gather_and_submit_data(submit_button, submit_click_event);
+    })
+
+</script>
+</body></html>
+<!-- YOUR HTML ENDS -->
+
+]]>
+</HTMLContent>
+<FrameHeight>600</FrameHeight>
+</HTMLQuestion>

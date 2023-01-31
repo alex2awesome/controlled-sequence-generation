@@ -1,0 +1,30 @@
+
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/mixins";
+
+
+.btn-1 {
+  // @include button-variant($btn-primary-color, $btn-primary-bg, $btn-primary-border);
+  @include button-variant(#0022ff, rgba(0, 34, 255, 0.56), #00167f);
+}
+
+.btn-2 {
+  // @include button-variant($btn-primary-color, $btn-primary-bg, $btn-primary-border);
+  @include button-variant(#0048ff, rgba(0, 72, 255, 0.64), #002786);
+}
+
+.btn-3 {
+  // @include button-variant($btn-primary-color, $btn-primary-bg, $btn-primary-border);
+  @include button-variant(#00a6ff, rgba(0, 166, 255, 0.59), #006ca5);
+}
+
+.btn-4 {
+  // @include button-variant($btn-primary-color, $btn-primary-bg, $btn-primary-border);
+  @include button-variant(#00fff7, rgba(0, 255, 247, 0.51), #00827e);
+}
+
+.btn-5 {
+  // @include button-variant($btn-primary-color, $btn-primary-bg, $btn-primary-border);
+  @include button-variant(#00ffa6, rgba(0, 255, 166, 0.58), #006c46);
+}
