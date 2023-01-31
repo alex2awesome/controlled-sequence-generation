@@ -6,17 +6,6 @@ We wish to test four broad algorithmic categories:
 * FUDGE
 * PPLM
 
-The full set of experimental variants are found here:
-
-https://docs.google.com/spreadsheets/d/1K-GPDgbJTW9fLru53FAtDZAVdCIfklPv8Ac587Uu2NM/edit?usp=sharing
-
-We'll start by describing PPLM and FUDGE, as these scripts are very similar. The most up-to-date scripts that I have tested 
-on `DSP` are somewhat confusingly named `run_one_doc_with_editing.sh` 
-* FUDGE: `generator/generator_fudge/scripts/run_one_doc_with_editing.sh`
-* PPLM: `generator/generator_pplm/scripts/run_one_doc_with_editing.sh`
-
-As written, these actually run 5 different headlines per `katie` call.
-
 ## FUDGE and PPLM
 
 The main variables we wish to experiment with are:
